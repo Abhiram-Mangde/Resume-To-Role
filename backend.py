@@ -28,7 +28,7 @@ def analyze_resume_with_gemini(resume_text: str) -> Dict:
         import vertexai
         from vertexai.preview.generative_models import GenerativeModel, Part
         # Initialize Vertex AI with your project and location
-        vertexai.init(project="pelagic-cat-461817-q8", location="us-central1")
+        vertexai.init(project="resumetorole", location="us-central1")
         model = GenerativeModel("gemini-1.5-pro")
         prompt = (
             "You are an AI Career Analyst. From the following resume, extract a list of technical skills, soft skills, "
