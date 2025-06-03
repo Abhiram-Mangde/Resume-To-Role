@@ -1,0 +1,17 @@
+[
+  {
+    "role": "Data Analyst",
+    "skills": ["Python", "SQL", "Data Analysis", "Power BI", "Statistics", "ETL"],
+    "responsibilities": ["Analyze data", "Build dashboards", "ETL pipelines"]
+  },
+  {
+    "role": "Backend Developer",
+    "skills": ["Python", "Django", "APIs", "SQL", "Docker", "CI/CD"],
+    "responsibilities": ["Develop APIs", "Database design", "Deploy services"]
+  },
+  {
+    "role": "Product Manager",
+    "skills": ["Roadmapping", "Stakeholder Management", "Agile", "Data Analysis", "Communication"],
+    "responsibilities": ["Define product vision", "Coordinate teams", "Gather requirements"]
+  }
+]
