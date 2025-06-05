@@ -181,12 +181,12 @@ def match_roles_and_suggest_learning(extracted: Dict) -> Dict:
             "skills": ["Network Security", "Penetration Testing", "Firewalls", "SIEM", "Incident Response", "Ethical Hacking", "Linux", "Risk Assessment", "Cryptography", "Security Policies"]
         }
     ]
-    # Normalize user skills: lowercase, strip whitespace
-    user_skills = set([s.lower().strip() for s in extracted.get("skills", [])])
+    # Normalize user skills: lowercase, strip whitespace, remove empty
+    user_skills = set([s.lower().strip() for s in extracted.get("skills", []) if s and isinstance(s, str)])
     # If the resume has a domain that matches a role, use that role
     domain_to_role = {r["role"].lower(): r["role"] for r in roles}
     for domain in extracted.get("domains", []):
-        if domain.lower().strip() in domain_to_role:
+        if isinstance(domain, str) and domain.lower().strip() in domain_to_role:
             return {
                 "best_matched_role": domain_to_role[domain.lower().strip()],
                 "match_score": 100,
@@ -199,7 +199,7 @@ def match_roles_and_suggest_learning(extracted: Dict) -> Dict:
     devops_matched = set()
     for skill in devops_skills:
         for user_skill in user_skills:
-            if skill in user_skill or user_skill in skill:
+            if skill and user_skill and (skill in user_skill or user_skill in skill):
                 devops_matched.add(skill)
     if len(devops_matched) >= 4:
         missing_skills = list(devops_skills - devops_matched)
@@ -222,7 +222,7 @@ def match_roles_and_suggest_learning(extracted: Dict) -> Dict:
         matched = set()
         for skill in required_skills:
             for user_skill in user_skills:
-                if skill in user_skill or user_skill in skill:
+                if skill and user_skill and (skill in user_skill or user_skill in skill):
                     matched.add(skill)
         match_count = len(matched)
         score = int(100 * match_count / len(required_skills))
