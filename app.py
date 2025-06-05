@@ -26,15 +26,13 @@ if resume_file:
     match_results = backend.match_roles_and_suggest_learning(extracted)
 
 # 2. View Analysis
-st.header("2. View Analysis")
-if extracted:
-    st.json(extracted)
-    if match_results:
-        st.markdown(f"**Best Matched Role:** {match_results['best_matched_role']}")
-        st.markdown(f"**Match Score:** {match_results['match_score']}%")
-        st.markdown(f"**Missing Skills:** {', '.join(match_results['missing_skills'])}")
+st.header("2. Best Matched Role")
+if extracted and match_results:
+    st.markdown(f"### {match_results['best_matched_role']}")
+    st.markdown(f"**Match Score:** {match_results['match_score']}%")
+    st.markdown(f"**Missing Skills:** {', '.join(match_results['missing_skills'])}")
 else:
-    st.info("Analysis results will appear here after processing your resume.")
+    st.info("Best matched role will appear here after processing your resume.")
 
 # 3. Learning Suggestions
 st.header("3. Learning Suggestions")
