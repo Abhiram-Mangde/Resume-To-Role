@@ -100,14 +100,18 @@ def analyze_resume_with_gemini(resume_text: str) -> Dict:
                 "Frontend Developer": ["react", "javascript", "css", "html", "frontend", "ui", "ux", "typescript"],
                 "Full Stack Developer": ["frontend", "backend", "full stack", "react", "django", "node.js", "api", "sql"]
             }
-            found_skills = [skill for skill in skill_keywords if skill.lower() in resume_text.lower()]
-            found_domains = [d for d in domain_keywords if d.lower() in resume_text.lower()]
-            found_roles = []
-            for role, keywords in role_keywords.items():
-                for kw in keywords:
-                    if kw in resume_text.lower():
-                        found_roles.append(role)
-                        break
+            found_skills = []
+            resume_text_lower = resume_text.lower()
+            for skill in skill_keywords:
+                if skill.lower() in resume_text_lower:
+                    found_skills.append(skill)
+            # Add more DevOps keywords
+            devops_keywords = [
+                "ci/cd", "jenkins", "docker", "kubernetes", "terraform", "ansible", "cloudformation", "infrastructure as code", "prometheus", "grafana", "monitoring", "linux admin", "sre", "site reliability", "devops", "cloud engineer", "aws", "azure", "gcp", "pipelines", "automation", "deployment", "configuration management", "container", "orchestration"
+            ]
+            for kw in devops_keywords:
+                if kw not in skill_keywords and kw in resume_text_lower:
+                    found_skills.append(kw)
             # Simple soft skills extraction
             soft_skills = [s for s in ["Communication", "Teamwork", "Leadership", "Mentoring"] if s.lower() in resume_text.lower()]
             # Experience level
@@ -217,6 +221,24 @@ def match_roles_and_suggest_learning(extracted: Dict) -> Dict:
     best_score = -1
     best_count = -1
     missing_skills = []
+    # --- DEBUG: Print extracted skills and role matches ---
+    print('Extracted user skills:', user_skills)
+    role_debug = {}
+    for role in roles:
+        required_skills = set([s.lower().strip() for s in role["skills"]])
+        matched = set()
+        for skill in required_skills:
+            for user_skill in user_skills:
+                if skill and user_skill and (skill in user_skill or user_skill in skill):
+                    matched.add(skill)
+        role_debug[role["role"]] = {
+            'matched_skills': list(matched),
+            'match_count': len(matched),
+            'total_required': len(required_skills),
+            'score': int(100 * len(matched) / len(required_skills))
+        }
+    print('Role match debug:', json.dumps(role_debug, indent=2))
+    # --- END DEBUG ---
     for role in roles:
         required_skills = set([s.lower().strip() for s in role["skills"]])
         matched = set()
