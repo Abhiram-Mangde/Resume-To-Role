@@ -1,92 +1,70 @@
-# Resume-To-Role – Smart Resume Analyzer & Career Matcher
+# Resume-To-Role: Smart Resume Analyzer & Skill Uplifter
 
-🚀 **What it does:**
+Resume-To-Role is an AI-powered web application that analyzes uploaded resumes, extracts key technical skills, and provides personalized learning resources to help users upskill for their career goals. Built with Streamlit and Google Gemini (Vertex AI), the app delivers fast, accurate, and interactive resume analysis for job seekers, students, and professionals.
 
-Upload your resume → Gemini API + Vertex AI analyzes your skills → suggests best-fit career roles, highlights skill gaps, and generates personalized learning paths using public data (e.g., Coursera, YouTube).
+## Features
 
-🔧 **Tools:**
+- **AI-Powered Skill Extraction:**
+  - Utilizes Google Gemini (Vertex AI) to analyze resume content and extract relevant technical and professional skills.
+- **Personalized Learning Resources:**
+  - For each extracted skill, the app suggests top-rated courses from Coursera and Udemy, enabling users to bridge skill gaps and advance their careers.
+- **Modern, User-Friendly UI:**
+  - Built with Streamlit, the app features a clean, responsive interface with intuitive navigation and interactive elements.
+- **Flexible Resume Upload:**
+  - Supports PDF and text file uploads for maximum compatibility.
+- **Seamless Google AI Integration:**
+  - Leverages the power of Google Gemini (Vertex AI) for robust, scalable, and enterprise-ready skill extraction.
 
-- **Gemini API** → Understanding resume & job descriptions
-- **Vertex AI Embeddings** → Similarity scoring
-- **Streamlit** → Upload + interactive UI
-- **Optional:** Integrate with LinkedIn job API or scrape job data for real-world matching
+## How It Works
 
-💥 **Why it's impactful:**
+1. **Upload Resume:**
+   - Users upload their resume in PDF or text format via the web interface.
+2. **AI Analysis:**
+   - The app uses Google Gemini (Vertex AI) to extract key skills from the resume.
+3. **Skill Visualization:**
+   - Extracted skills are displayed as interactive tags for easy review.
+4. **Learning Suggestions:**
+   - For each skill, the app provides direct links to relevant Coursera and Udemy courses.
 
-- Every job seeker can benefit
-- High relevance, easy deployment
-- Shows real use of embeddings, LLMs, and RAG
+## Tech Stack
 
----
+- **Frontend:** Streamlit (Python)
+- **AI/ML:** Google Gemini (Vertex AI)
+- **Learning Resources:** Coursera, Udemy
 
-# Documentation: Resume-To-Role – Smart Resume Analyzer & Career Matcher
+## Setup & Usage
 
-## Step 1: Define the Workflow & Architecture
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-username/Resume-To-Role.git
+   cd Resume-To-Role
+   ```
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. **Configure Google Vertex AI:**
+   - Set up your Google Cloud project and authenticate with Vertex AI and Gemini API access.
+   - Update any required credentials or environment variables as per your deployment.
+4. **Run the app:**
+   ```bash
+   streamlit run app.py
+   ```
+5. **Open in your browser:**
+   - Go to `http://localhost:8501` to use the app.
 
-### 🎯 What the app will do:
-1. User uploads resume (PDF/text)
-2. Gemini API reads and extracts skills, experience, domain, etc.
-3. Gemini matches these against a set of curated job roles
-4. Calculates matching score + highlights missing skills
-5. Suggests upskilling paths using real links (Coursera/YouTube)
-6. All done in a clean Streamlit UI
+## Demo
 
----
+- [Demo Video](https://your-demo-video-link.com)
+- [Live App](https://your-deployment-link.com)
 
-## Step 2: Prepare the Dataset
+## Google AI Tools Used
+- **Google Gemini (Vertex AI):** For advanced skill extraction and resume analysis.
 
-We'll need:
-- A list of job roles (e.g., Data Analyst, Backend Developer, Product Manager)
-- For each role:
-  - Skills required
-  - Typical responsibilities (to help Gemini understand better)
+## License
 
-➡️ Starter JSON/CSV for these roles will be created.
-
----
-
-## Step 3: Build the Resume Skill Extractor
-
-### 🔧 Tools:
-- Gemini API (via Vertex AI or Generative AI Studio)
-
-**Prompt Example:**
-> "You are an AI Career Analyst. From the following resume, extract a list of technical skills, soft skills, domains of expertise, experience level, and notable achievements. Format the result in structured JSON."
-
-Resume:
-[Paste user’s resume content here]
-
-We'll use gemini-pro or gemini-1.5-pro for this in Python or Streamlit.
-
----
-
-## Step 4: Role Matching & Gap Analysis
-
-Match extracted skills to roles using:
-- Vector Embeddings (Vertex AI Embeddings API) to find best-fit roles
-- Calculate % match and identify missing skills
-
-**Example output:**
-```json
-{
-  "best_matched_role": "Data Analyst",
-  "match_score": 78,
-  "missing_skills": ["Power BI", "Statistics", "ETL"],
-  "learning_suggestions": [
-    "https://www.coursera.org/learn/data-visualization",
-    "https://www.youtube.com/watch?v=xyz"
-  ]
-}
-```
+This project is licensed under the MIT License.
 
 ---
 
-## Step 5: Build the Streamlit UI
-
-Your app will have 3 main parts:
-1. Upload Resume (PDF or text)
-2. View Analysis (Skills, roles, match %, gaps)
-3. Learning Suggestions (auto-linked)
-
-**Bonus:**
-- Save results as downloadable PDF
+*Empower your career journey with AI-driven insights and upskilling recommendations!*
