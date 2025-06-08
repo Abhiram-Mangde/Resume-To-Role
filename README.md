@@ -60,11 +60,3 @@ Resume-To-Role is an AI-powered web application that analyzes uploaded resumes, 
 
 ## Google AI Tools Used
 - **Google Gemini (Vertex AI):** For advanced skill extraction and resume analysis.
-
-## License
-
-This project is licensed under the MIT License.
-
----
-
-*Empower your career journey with AI-driven insights and upskilling recommendations!*
